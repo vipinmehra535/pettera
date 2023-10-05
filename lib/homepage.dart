@@ -148,7 +148,7 @@ class HomePage extends StatelessWidget {
                   ),
                   Container(
                     padding: EdgeInsets.only(left: size.width / 20),
-                    height: size.height / 15,
+                    height: 50,
                     width: size.width,
                     child: ListView.separated(
                       shrinkWrap: true,
@@ -156,8 +156,8 @@ class HomePage extends StatelessWidget {
                       itemCount: userData.length,
                       itemBuilder: (context, index) {
                         return Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 25.0,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: size.width / 15,
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -190,9 +190,13 @@ class HomePage extends StatelessWidget {
                       },
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(
+                    height: size.height / 30,
+                  ),
                   const CustomTabView(),
-                  const SizedBox(height: 10),
+                  SizedBox(
+                    height: size.height / 50,
+                  ),
                 ],
               ),
             ],

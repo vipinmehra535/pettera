@@ -2,7 +2,7 @@ import 'package:assignment/widget/posts.dart';
 import 'package:flutter/material.dart';
 
 class CustomTabView extends StatefulWidget {
-  const CustomTabView({super.key});
+  const CustomTabView({Key? key}) : super(key: key);
 
   @override
   State<CustomTabView> createState() => _CustomTabViewState();
@@ -13,31 +13,31 @@ class _CustomTabViewState extends State<CustomTabView> {
 
   final List<Map<String, dynamic>> tabs = [
     {
-      'lable': 'Posts',
+      'label': 'Posts',
       'widget': const Post(),
     },
     {
-      'lable': 'Stamp Book',
-      'widget': const Post(),
+      'label': 'Stamp Book',
+      'widget':
+          const Post(), // You should replace 'Post()' with the actual widget for 'Stamp Book'.
     },
     {
-      'lable': 'Community',
-      'widget': const Post(),
+      'label': 'Community',
+      'widget':
+          const Post(), // You should replace 'Post()' with the actual widget for 'Community'.
     },
   ];
+
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
+    final Size size = MediaQuery.of(context).size;
 
-    selectedIndex = 0;
     return Column(
       children: [
         Row(
           children: [
             Padding(
-              padding: EdgeInsets.only(
-                left: size.width / 12,
-              ),
+              padding: EdgeInsets.only(left: size.width / 15),
               child: SizedBox(
                 height: 45,
                 child: ListView.builder(
@@ -46,58 +46,55 @@ class _CustomTabViewState extends State<CustomTabView> {
                   scrollDirection: Axis.horizontal,
                   itemCount: tabs.length,
                   itemBuilder: (context, index) {
-                    return Row(
-                      children: [
-                        InkWell(
-                          highlightColor: Colors.transparent,
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          onTap: () {
-                            setState(() {
-                              selectedIndex = index;
-                            });
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10, right: 10),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    tabs[index]['lable'],
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      color: selectedIndex == index
-                                          ? Colors.white
-                                          : Colors.grey,
-                                      fontFamily: "Plus Jakarta Sans",
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Container(
-                                  width: 40,
-                                  height: 2,
-                                  decoration: BoxDecoration(
-                                    color: selectedIndex == index
-                                        ? const Color(0xff0E3C6E)
-                                        : Colors.transparent,
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(5),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
+                    return InkWell(
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      onTap: () {
+                        setState(() {
+                          selectedIndex = index;
+                        });
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: size.width / 20,
                         ),
-                        const SizedBox(width: 20)
-                      ],
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                tabs[index]['label'],
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: selectedIndex == index
+                                      ? Colors.white
+                                      : Colors.grey,
+                                  fontFamily: "Plus Jakarta Sans",
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              width: 40,
+                              height: 2,
+                              decoration: BoxDecoration(
+                                color: selectedIndex == index
+                                    ? const Color(0xff0E3C6E)
+                                    : Colors.transparent,
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(5),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     );
                   },
                 ),
