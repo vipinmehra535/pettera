@@ -1,4 +1,5 @@
 import 'package:assignment/widget/posts.dart';
+import 'package:assignment/widget/stamp_book.dart';
 import 'package:flutter/material.dart';
 
 class CustomTabView extends StatefulWidget {
@@ -18,13 +19,11 @@ class _CustomTabViewState extends State<CustomTabView> {
     },
     {
       'label': 'Stamp Book',
-      'widget':
-          const Post(), // You should replace 'Post()' with the actual widget for 'Stamp Book'.
+      'widget': const StampBook(),
     },
     {
       'label': 'Community',
-      'widget':
-          const Post(), // You should replace 'Post()' with the actual widget for 'Community'.
+      'widget': const Post(),
     },
   ];
 
